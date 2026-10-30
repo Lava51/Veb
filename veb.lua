@@ -3,7 +3,7 @@ term.setCursorPos(1,1)
 
 local version = "0.1.0"
 
-local items_per_page = 6
+local items_per_page = 8
 local entries = {}
 
 local current_page = none
@@ -49,13 +49,19 @@ local function get_entries()
 end
 
 -- Print entry along with id
-local function print_entry(id)
+local function printEntry(id)
     print(string.format("%d: %s ", id, get_entries[id]))
 end
 
 -- Print entire page
 local function print_page(page)
+    local pageStart = (page - 1) * 8 + 1
+    local pageEnd = page * 8
+    local limit =  math.min(pageEnd, #entries)
     
+    for i = pageStart, limit do
+        printEntry(i)
+    end
 end
 
 term.clear()
@@ -70,8 +76,11 @@ print("Switch page: A/D")
 term.setCursorPos(1, 4)
 term.setTextColor(colors.red)
 print("Enter Vesh (VEb SHell)")
-term.setCursorPos(1, 35)
+term.setCursorPos(30, 4)
 print ("Vesh in W.I.P (locked)")
+term.setTextColor(colors.white)
 term.setCursorPos(1, 6)
 print("Type an entry ID to boot into it")
 
+input = read()
+print_page(input)
