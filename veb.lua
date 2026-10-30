@@ -13,7 +13,7 @@ local input = none
 os.pullEvent = os.pullEventRaw
 
 --Read Password
-function read_password()
+function readPassword()
     if fs.exists("veb/config/password") then
         local password_read = fs.open("veb/config/password", "r")
         return password_read.readAll()
@@ -22,7 +22,7 @@ function read_password()
     end
 end
 ----------------
-local password = read_password()
+local password = readPassword()
 if password ~= none then
     print("Type password")
     input = read()
@@ -40,7 +40,7 @@ if password ~= none then
 end
 
 -- Get entries
-local function get_entries()
+local function getEntries()
     local detected_entries = fs.find("veb/entries/*")
     local counter = 1
     for i in detected_entries, 1, table.getn(detected_entries) do
@@ -63,6 +63,8 @@ local function print_page(page)
         printEntry(i)
     end
 end
+
+getEntries()
 
 term.clear()
 term.setCursorPos(1, 1)
