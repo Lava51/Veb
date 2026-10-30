@@ -50,7 +50,7 @@ end
 
 -- Print entry along with id
 local function printEntry(id)
-    print(string.format("%d: %s ", id, get_entries[id]))
+    print(string.format("%d: %s ", id, entries[id]))
 end
 
 -- Print entire page
