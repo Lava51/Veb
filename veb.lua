@@ -55,7 +55,7 @@ local function print_top()
     term.setCursorPos(1, 6)
     print("Type an entry ID to boot into it")
     term.setCursorPos(1, 30)
-    print("Page: %d" current_page)
+    print(string.format("Page: %d", current_page))
 end
 
 -- Get entries
@@ -67,6 +67,7 @@ local function get_entries()
         table.insert(entries, counter, i)
         counter = counter + 1
     end
+    num_pages = math.floor((table.getn(entries) / 8) + 0.5)
 end
 
 -- Print entry along with id
@@ -128,14 +129,14 @@ local function read_input(arg)
     else
         print("Input not detected")
     end
+end
 
 
 
 entries = get_entries()
-num_pages = math.floor((table.getn(entries) / 8) + 0.5)
 
 print_page(1)
 
-while true do
+while ( !quit ) do
     read_input(read())
 end
