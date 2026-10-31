@@ -5,6 +5,7 @@ local entries = {}
 
 local current_page = 1
 local num_pages =  nil
+local page_limit = nil
 
 os.pullEvent = os.pullEventRaw
 
@@ -68,7 +69,6 @@ local function get_entries()
         counter = counter + 1
     end
     num_pages = math.floor((table.getn(entries) / 8) + 0.5)
-    page_limit =  math.min(page_end, table.getn(entries))
 end
 
 -- Print entry along with id
@@ -85,7 +85,9 @@ local function print_page(page)
     local page_start = (page - 1) * items_per_page + 1
     local page_end = page * items_per_page
 
-    for i = page_start, limit do
+    page_limit =  math.min(page_end, table.getn(entries))
+
+    for i = page_start, page_limit do
         print_entry(i)
     end
 end
