@@ -36,6 +36,15 @@ if password ~= none then
     end
 end
 
+-- Get table size
+local function get_table_size(table)
+    local count = 0
+    for i in pairs(table) do
+        count = count+ 1
+    end
+    return count
+end
+
 -- print top bar
 local function print_top()
     term.clear()
@@ -65,8 +74,7 @@ local function get_entries()
     local counter = 1
 
     for i = 1, table.getn(detected_entries) do
-        --table.insert(entries, counter, i)
-        table.insert(entries, counter)
+        table.insert(entries, counter, i)
         counter = counter + 1
     end
     num_pages = math.floor((table.getn(entries) / 8) + 0.5)
@@ -86,7 +94,7 @@ local function print_page(page)
     local page_start = (page - 1) * items_per_page + 1
     local page_end = page * items_per_page
 
-    page_limit =  math.min(page_end, table.getn(entries))
+    page_limit =  math.min(page_end, get_table_size(entries))
 
     for i = page_start, page_limit do
         print_entry(i)
