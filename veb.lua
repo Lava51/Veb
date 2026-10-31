@@ -7,6 +7,9 @@ local current_page = 1
 local num_pages =  nil
 
 local page_limit = nil
+local page_start = (page - 1) * items_per_page + 1
+local page_end = page * items_per_page
+    
 
 os.pullEvent = os.pullEventRaw
 
@@ -83,9 +86,6 @@ local function print_page(page)
     term.clear()
     print_top()
 
-    local page_start = (page - 1) * items_per_page + 1
-    local page_end = page * items_per_page
-    
     for i = page_start, limit do
         print_entry(i)
     end
