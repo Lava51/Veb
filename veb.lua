@@ -1,15 +1,10 @@
-term.clear()
-term.setCursorPos(1,1)
-
 local version = "0.1.0"
 
 local items_per_page = 8
 local entries = {}
 
 local current_page = 1
-local num_pages = none
-
-local input = none
+local num_pages =  nil
 
 os.pullEvent = os.pullEventRaw
 
@@ -109,7 +104,7 @@ local function turn_page(direction)
 end
 
 local function boot_into_key(key)
-
+    print("soon")
 end
 
 -- Reads input
@@ -139,7 +134,6 @@ local function read_input(arg)
 entries = get_entries()
 num_pages = math.floor((table.getn(entries) / 8) + 0.5)
 
-input = read()
 print_page(1)
 
 while true do
