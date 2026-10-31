@@ -42,8 +42,10 @@ end
 -- Get entries
 local function get_entries()
     local detected_entries = table.pack(fs.find("veb/os-entries/*"))
+    local counter = 1
     for i = 1, table.getn(detected_entries), 1 do
         table.insert(entries, counter, i)
+        counter += 1
     end
 end
 
