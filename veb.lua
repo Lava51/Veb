@@ -143,4 +143,5 @@ input = read()
 print_page(1)
 
 while true do
-    input = read()
+    read_input(arg)
+end
