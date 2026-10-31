@@ -46,12 +46,14 @@ local function get_entries()
 
     local give = {}
 
-    for i = 1, table.getn(detected_entries), 1 do
+    for i = 1, detected_entries.n do
         table.insert(give, counter, i)
         counter = counter + 1
     end
     return give
 end
+
+entries = get_entries()
 
 -- Print entry along with id
 local function print_entry(id)
@@ -65,11 +67,9 @@ local function print_page(page)
     local limit =  math.min(page_end, #entries)
     
     for i = page_start, limit do
-        print_entry(i)|
+        print_entry(i)
     end
 end
-
-entries = get_entries()
 
 term.clear()
 term.setCursorPos(1, 1)
