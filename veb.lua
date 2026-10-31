@@ -13,7 +13,7 @@ local input = none
 os.pullEvent = os.pullEventRaw
 
 --Read Password
-function readPassword()
+function read_password()
     if fs.exists("veb/config/password") then
         local password_read = fs.open("veb/config/password", "r")
         return password_read.readAll()
@@ -22,7 +22,7 @@ function readPassword()
     end
 end
 ----------------
-local password = readPassword()
+local password = read_password()
 if password ~= none then
     print("Type password")
     input = read()
@@ -40,31 +40,30 @@ if password ~= none then
 end
 
 -- Get entries
-local function getEntries()
-    local detected_entries = fs.find("veb/os-entries/*")
-    local counter = 1
+local function get_entries()
+    local detected_entries = tablet.pack(fs.find("veb/os-entries/*"))
     for i = 1, table.getn(detected_entries), 1 do
         table.insert(entries, counter, i)
     end
 end
 
 -- Print entry along with id
-local function printEntry(id)
+local function print_entry(id)
     print(string.format("%d: %s ", id, entries[id]))
 end
 
 -- Print entire page
 local function print_page(page)
-    local pageStart = (page - 1) * 8 + 1
-    local pageEnd = page * 8
-    local limit =  math.min(pageEnd, #entries)
+    local page_start = (page - 1) * 8 + 1
+    local page_end = page * 8
+    local limit =  math.min(page_end, #entries)
     
-    for i = pageStart, limit do
-        printEntry(i)
+    for i = page_start, limit do
+        print_entry(i)
     end
 end
 
-getEntries()
+get_entries()
 
 term.clear()
 term.setCursorPos(1, 1)
