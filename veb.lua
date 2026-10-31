@@ -43,7 +43,7 @@ end
 local function getEntries()
     local detected_entries = fs.find("veb/entries/*")
     local counter = 1
-    for i in detected_entries, 1, table.getn(detected_entries) do
+    for i = 1, table.getn(detected_entries), 1 do
         table.insert(entries, counter, i)
     end
 end
