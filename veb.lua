@@ -65,7 +65,8 @@ local function get_entries()
     local counter = 1
 
     for i = 1, table.getn(detected_entries) do
-        table.insert(entries, counter, i)
+        --table.insert(entries, counter, i)
+        table.insert(entries, counter)
         counter = counter + 1
     end
     num_pages = math.floor((table.getn(entries) / 8) + 0.5)
