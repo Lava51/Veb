@@ -43,10 +43,14 @@ end
 local function get_entries()
     local detected_entries = table.pack(fs.find("veb/os-entries/*"))
     local counter = 1
+
+    local give = {}
+
     for i = 1, table.getn(detected_entries), 1 do
-        table.insert(entries, counter, i)
+        table.insert(give, counter, i)
         counter = counter + 1
     end
+    return give
 end
 
 -- Print entry along with id
@@ -61,11 +65,11 @@ local function print_page(page)
     local limit =  math.min(page_end, #entries)
     
     for i = page_start, limit do
-        print_entry(i)
+        print_entry(i)|
     end
 end
 
-get_entries()
+entries = get_entries()
 
 term.clear()
 term.setCursorPos(1, 1)
